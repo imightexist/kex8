@@ -1,0 +1,4 @@
+- the installer sets up VxKex 1.1.1.1375
+- it cant be uninstalled, so if you think you need to, set up a system restore point
+- 64-bit
+- doesn't really work
