@@ -53,11 +53,14 @@ echo y | reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\VxKex 
 echo y | reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\VxKex /v NoRepair /t REG_DWORD /d 1
 echo y | reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\VxKex /v NoModify /t REG_DWORD /d 1
 @prompt vxl files: 
+echo y | reg add "HKCR\.vxl"
 echo y | reg add "HKCR\.vxl" /ve /d "vxlfile"
+echo y | reg add "HKCR\vxlfile"
 echo y | reg add "HKCR\vxlfile" /ve /d "VxLog File"
 echo y | reg add "HKCR\vxlfile\shell\open\command" /ve /d "%programfiles%\vxkex\vxlview.exe \"%%1\""
 echo y | reg add "HKCR\vxlfile\DefaultIcon" /ve /d "%programfiles%\vxkex\vxlview.exe,1"
 @prompt Disk Cleanup: 
+echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files"
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files" /ve /d "{C0E13E61-0CC6-11d1-BBB6-0060978B2AE6}"
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files" /v Description /d "VxKex may create log files each time you launch an application, which consumes dick space. Log files older than 3 days can safely be deleted."
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files" /v Display /d "VxKex Log Files" /t REG_SZ
@@ -67,20 +70,29 @@ echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Volume
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files" /v IconPath /t REG_SZ /d "%programfiles%\vxlview.exe,1"
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\VxKex Log Files" /v LastAccess /t REG_DWORD /d 3
 @prompt Shell Extension:
+echo y | reg add "HKCR\exefile\shellex\PropertySheetHandlers\KexShlEx Property Page"
 echo y | reg add "HKCR\exefile\shellex\PropertySheetHandlers\KexShlEx Property Page" /ve /d "{9AACA888-A5F5-4C01-852E-8A2005C1D45F}"
 echo y | reg add "HKCR\lnkfile\shellex\PropertySheetHandlers\KexShlEx Property Page" /ve /d "{9AACA888-A5F5-4C01-852E-8A2005C1D45F}"
+echo y | reg add "HKCR\Msi.Package\shellex\PropertySheetHandlers\KexShlEx Property Page"
 echo y | reg add "HKCR\Msi.Package\shellex\PropertySheetHandlers\KexShlEx Property Page" /ve /d "{9AACA888-A5F5-4C01-852E-8A2005C1D45F}"
+echo y | reg add HKCR\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32
 echo y | reg add HKCR\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32 /ve /d "%programfiles%\VxKex\KexShlEx.dll"
 echo y | reg add HKCR\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32 /v ThreadingModel /d "Apartment" /t REG_SZ
+echo y | reg add HKCR\Wow6432Node\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32
 echo y | reg add HKCR\Wow6432Node\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32 /ve /d "%programfiles%\VxKex\KexShl32.dll"
 echo y | reg add HKCR\Wow6432Node\CLSID\{9AACA888-A5F5-4C01-852E-8A2005C1D45F}\InProcServer32 /v ThreadingModel /d "Apartment" /t REG_SZ
 @prompt CPIW Bypass: 
+echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}"
 echo y | reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}" /ve /d "VxKex CPIW Version Check Bypass"
+echo y | reg add "HKCR\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32"
 echo y | reg add "HKCR\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32" /ve /d "%programfiles%\vxkex\cpiwbypa.dll"
 echo y | reg add "HKCR\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32" /v ThreadingModel /d "Apartment"
+echo y | reg add "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}"
 echo y | reg add "HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}" /ve /d "VxKex CPIW Version Check Bypass"
+echo y | reg add "HKLM\Wow6432Node\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32"
 echo y | reg add "HKLM\Wow6432Node\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32" /ve /d "%programfiles%\vxkex\cpiwbypa.dll"
 echo y | reg add "HKLM\Wow6432Node\CLSID\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}\InProcServer32" /v ThreadingModel /d "Apartment"
+echo y | reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}"
 echo y | reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Ext\Settings\{7EF224FC-1840-433C-9BCB-2951DE71DDBD}" /v Flags /d 40 /t REG_DWORD
 @prompt Scheduling task: 
 schtasks /create /xml task.xml /tn "VxKex Configuration Elevation Task"
